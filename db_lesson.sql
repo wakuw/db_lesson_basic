@@ -12,7 +12,7 @@ alter table people add department_id int unsigned after email;
 
 
 Q3
-insert into departments (name,email,age,gender)
+insert into departments (name)
 -> values
 ->('営業')
 ->('開発')
@@ -56,7 +56,7 @@ update people set department_id = 5 where person_id = 6;
 
 
 Q5
-select * from people where gender = 1 order by age desc;
+select name, age from people where gender = 1 order by age desc;
 
 
 Q6
@@ -78,8 +78,8 @@ select avg(age) as average_age from people where department_id = 2 and gender = 
 
 
 Q10
-select people.name, people.department_id, reports.content
--> from people inner join reports on people.person_id = reports.person_id;
+select people.name, departments.name, reports.content
+-> from people inner join reports on people.person_id = reports.person_id inner join departments on people.department_id= departments.department_id;
 
 Q11
 select name from people where not exists (select person_id from reports where people.person_id = reports.person_id);
